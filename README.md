@@ -1,6 +1,6 @@
-# SupportSpace 🌸
+# CODE-SIS 🌸
 
-SupportSpace is a mini web platform inspired by Sheroes.com — a safe space where users can post supportive or helpful messages anonymously.
+CODE-SIS is a mini web platform inspired by Sheroes.com — a safe space where users can post supportive or helpful messages anonymously.
 
 ## Features
 
@@ -18,16 +18,20 @@ SupportSpace is a mini web platform inspired by Sheroes.com — a safe space whe
 ## Run Locally
 
 ```bash
-git clone https://github.com/yourname/supportspace
-cd supportspace
+git clone https://github.com/ShivamBwaj/Code-Sis
+cd Code-Sis
 npm install
 node server/server.js
 ```
 
 Visit `http://localhost:3000`
 
+## Funtionalities
+- Login System
+- Anonymous Forum to ask questions to like minded people
+
 ## Future Ideas
 
-- Login & Profiles
+- Profiles
 - Topics (e.g. Career, Parenting, Mental Health)
 - Private Mentorship Chat
