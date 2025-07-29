@@ -30,6 +30,9 @@ Visit `http://localhost:3000`
 - Login System
 - Anonymous Forum to ask questions to like minded people
 
+## Temporary Hosting
+- https://488f463f-bee2-4849-9042-99be11a8da6b-00-3ivtxnutqj9qk.sisko.replit.dev/
+
 ## Future Ideas
 
 - Profiles
