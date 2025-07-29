@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mentor Connect</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f8f9fa;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 40px;
+      }
+
+      .mentor-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .mentor-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .mentor-card img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+      }
+
+      .mentor-card h3 {
+        margin: 0;
+        font-size: 20px;
+        color: #333;
+      }
+
+      .mentor-card small {
+        color: #888;
+      }
+
+      .mentor-card p {
+        font-size: 14px;
+        color: #555;
+        margin: 10px 0;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 8px;
+        resize: vertical;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        padding: 8px 16px;
+        background: #f26b6b;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #e25656;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Connect with a Mentor</h1>
+    <div class="mentor-grid" id="mentorList"></div>
+
+    <script>
+      fetch("/api/mentors")
+        .then((res) => res.json())
+        .then((mentors) => {
+          const container = document.getElementById("mentorList");
+          mentors.forEach((m) => {
+            const card = document.createElement("div");
+            card.className = "mentor-card";
+            card.innerHTML = `
+            <img src="https://api.dicebear.com/7.x/initials/svg?seed=${m.name}" alt="${m.name}">
+            <h3>${m.name}</h3>
+            <small>${m.expertise}</small>
+            <p>${m.bio}</p>
+            <textarea placeholder="Ask anonymously..."></textarea>
+            <button onclick="sendRequest(${m.id}, this)">Request Help</button>
+          `;
+            container.appendChild(card);
+          });
+        });
+
+      function sendRequest(id, btn) {
+        const message = btn.previousElementSibling.value;
+        if (!message.trim()) return alert("Please type your request.");
+
+        fetch("/api/request-help", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mentorId: id, message }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            alert(data.message);
+            btn.previousElementSibling.value = "";
+          });
+      }
+    </script>
+  </body>
+</html>
