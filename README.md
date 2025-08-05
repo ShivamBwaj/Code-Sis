@@ -1,6 +1,6 @@
 # CODE-SIS 🌸
 
-CODE-SIS is a mini web platform inspired by Sheroes.com — a safe space where users can post supportive or helpful messages anonymously.
+CODE-SIS is a mini web platform inspired by Sheroes.com — a safe space where users can post supportive or helpful messages anonymously. Made in CodeRed Hackathon by ACM-W in VIT Chennai
 
 ## Features
 
